@@ -1,12 +1,5 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.vo
 
-// position where data is loaded in a list
-enum class Direction {
-    NONE,
-    TOP,
-    BOTTOM
-}
-
 enum class Status {
     SUCCESS,
     ERROR,

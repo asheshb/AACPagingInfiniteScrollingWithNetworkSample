@@ -3,8 +3,7 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.list
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.MovieSampleApp
@@ -21,30 +20,23 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
     private val movieRepository: MovieRepository =
         getApplication<MovieSampleApp>().getMovieRepository()
 
-    private var movieSource: LiveData<PagedList<Movie>>
-    private val _movies = MediatorLiveData<PagedList<Movie>>()
-    val movies: LiveData<PagedList<Movie>>
-        get() = _movies
+    private val boundaryCallback = MovieBoundaryCallback()
 
-    private val _loadingStatus = MutableLiveData<LoadingStatus>()
-    val loadingStatus: LiveData<LoadingStatus>
-        get() = _loadingStatus
+    val loadingStatus = Transformations.switchMap(boundaryCallback.boundaryState, {
+        onBoundaryItemLoaded(it.itemData, it.direction)})
 
-    init {
-        movieSource = getMovieSource()
-        _movies.addSource(movieSource) { _movies.value = it }
-    }
+    val movies = getMovieSource()
+
 
     private fun getMovieSource(): LiveData<PagedList<Movie>> {
         val dataSourceFactory = movieRepository.getMovieDataSourceFactory()
-        val boundaryCallback = MovieBoundaryCallback(this::onBoundaryItemLoaded)
 
         return LivePagedListBuilder(dataSourceFactory, MovieBoundaryCallback.DATABASE_PAGE_SIZE)
             .setBoundaryCallback(boundaryCallback)
             .build()
     }
 
-    private fun onBoundaryItemLoaded(itemDate: Date, direction: Direction) {
+    private fun onBoundaryItemLoaded(itemDate: Date, direction: Direction) : LiveData<LoadingStatus> {
         Timber.d("onBoundaryItemLoaded %s %s ", itemDate, direction)
 
         val fetchDate = when (direction) {
@@ -52,21 +44,11 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
             Direction.TOP -> Util.addDay(itemDate, +1)
             else -> itemDate
         }
-        movieRepository.fetchMore(fetchDate, this::updateLoadingStatus)
+        return movieRepository.fetchMore(fetchDate)
     }
 
-    private fun updateLoadingStatus(loadingStatus: LoadingStatus) {
-        this._loadingStatus.value = loadingStatus
-    }
-
-    // After re adding the source, onItemAtFrontLoaded() of MovieBoundaryCallback class should
-    // have been called in  but that's not happening
     fun refresh() {
         Timber.d("refreshing")
-        _movies.removeSource(movieSource)
-        movieSource = getMovieSource()
-        _movies.addSource(movieSource) {
-            _movies.value = it
-        }
+        boundaryCallback.refresh()
     }
 }

@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 class MovieListFragment : Fragment() {
     private lateinit var movieListAdapter: MovieListAdapter
     private lateinit var movieListViewModel: MovieListViewModel
-    private var loading: Boolean = false
 
     companion object {
         private const val COL = 2
@@ -66,15 +65,12 @@ class MovieListFragment : Fragment() {
         })
 
         swipeRefreshLayout.setOnRefreshListener {
-            if (!loading) {
-                movieListViewModel.refresh()
-            }
+            movieListViewModel.refresh()
         }
     }
 
-    private fun toggleRefreshing(loading: Boolean) {
-        this.loading = loading
-        swipeRefreshLayout.isRefreshing = loading
+    private fun toggleRefreshing(refreshing: Boolean) {
+        swipeRefreshLayout.isRefreshing = refreshing
     }
 
     private fun showErrorMessage(errorCode: ErrorCode?, message: String?) {
