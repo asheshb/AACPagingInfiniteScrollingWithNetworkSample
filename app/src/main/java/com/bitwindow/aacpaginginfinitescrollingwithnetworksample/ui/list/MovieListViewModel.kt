@@ -22,7 +22,7 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val boundaryCallback = MovieBoundaryCallback()
 
-    val loadingStatus = Transformations.switchMap(boundaryCallback.boundaryState, {
+    val loadingStatus : LiveData<LoadingStatus> = Transformations.switchMap(boundaryCallback.boundaryState, {
         onBoundaryItemLoaded(it.itemData, it.direction)})
 
     val movies = getMovieSource()
