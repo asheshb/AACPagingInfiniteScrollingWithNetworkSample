@@ -22,11 +22,7 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val boundaryCallback = MovieBoundaryCallback()
 
-    val loadingStatus : LiveData<LoadingStatus> = Transformations.switchMap(boundaryCallback.boundaryState, {
-        onBoundaryItemLoaded(it.itemData, it.direction)})
-
     val movies = getMovieSource()
-
 
     private fun getMovieSource(): LiveData<PagedList<Movie>> {
         val dataSourceFactory = movieRepository.getMovieDataSourceFactory()
@@ -35,6 +31,9 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
             .setBoundaryCallback(boundaryCallback)
             .build()
     }
+
+    val loadingStatus : LiveData<LoadingStatus> = Transformations.switchMap(
+        boundaryCallback.boundaryState, {onBoundaryItemLoaded(it.itemData, it.direction)})
 
     private fun onBoundaryItemLoaded(itemDate: Date, direction: Direction) : LiveData<LoadingStatus> {
         Timber.d("onBoundaryItemLoaded %s %s ", itemDate, direction)
