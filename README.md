@@ -22,6 +22,12 @@ Ex: `it.buildConfigField 'String', 'TMDB_API_KEY', "\"YOUR-API-KEY\""`
 
 ![AAC Paging Infinite Scrolling With Network Sample Screenshot](art/aacpaginginfinitescrollingwithnetworksample-screenshot.png?raw=true)
 
+## Article
+
+Here is an article providing the overview of the sample. 
+
+[https://medium.com/@asheshb/android-architecture-components-and-paging-library-in-kotlin-infinite-scrolling-with-network-c75b6cd183c0](https://medium.com/@asheshb/android-architecture-components-and-paging-library-in-kotlin-infinite-scrolling-with-network-c75b6cd183c0)
+
 
 ## Author
 
