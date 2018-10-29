@@ -6,15 +6,19 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.vo.Movie
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.repository.DaoInterface
 
 @Dao
-interface MovieDao {
+interface MovieDao : DaoInterface {
+
     @Query("SELECT * FROM movies ORDER BY release_date DESC, title ASC")
-    fun loadMovies(): DataSource.Factory<Int, Movie>
+    override fun loadMovies(): DataSource.Factory<Int, Movie>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovies(movies: List<Movie>)
+    override fun insertMovies(movies: List<Movie>)
+
 
     @Query("DELETE FROM movies")
-    fun truncateMovieTable()
+    override fun truncateMovieTable()
 }
