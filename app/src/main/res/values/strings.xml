@@ -2,7 +2,7 @@
     <string name="app_name">AAC Paging Infinite Scrolling With Network Sample</string>
 
     <string name="movie_poster">Movie Poster</string>
-    <string name="item_clicked">Movie id: %1$d</string>
+    <string name="movie_backdrop">Movie Backdrop</string>
 
     <string name="error_no_data">No data returned from server. Please try again</string>
     <string name="error_network">Error fetching data. %1$s</string>

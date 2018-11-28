@@ -5,11 +5,11 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.vo.Movie
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.MovieData
 
 @Database(
     entities = [
-        Movie::class
+        MovieData::class
     ],
     version = 1,
     exportSchema = false

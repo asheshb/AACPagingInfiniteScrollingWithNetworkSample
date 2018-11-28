@@ -1,6 +1,14 @@
 # AAC Paging Infinite Scrolling With Network Sample
 
-This project is a sample for implementation of Android Architecture Components written in Kotlin. It uses [Jetpack's Paging component](https://developer.android.com/topic/libraries/architecture/paging/) to demonstrate endless scrolling using database + network.
+This project is a sample for implementation of Clean Architecture written in Kotlin. It uses [Jetpack's Paging component](https://developer.android.com/topic/libraries/architecture/paging/) to demonstrate endless scrolling using database + network.
+
+## What you will learn?
+
+1. **Clean Architecture**: Design an app using layered architecture based on [Clean Architecture by Uncle Bob](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html). 
+2. **Paging library**: Learn how to use PagedList callbacks to coordinate between local database and fetching more data from network.
+3. **Navigation component**: At last it's setlled, single activity is what's Google recommend now. Navigation editor make thhings easy for us to design navigation path of our app. 
+4. **Architecture components**: The good old tristar LiveData, ViewModel and Room.
+3. **Kotlin**: We all love it. Learn how to use it to develop an Android app.
 
 ## Pre-requisites
 Android Studio 3.2 or higher

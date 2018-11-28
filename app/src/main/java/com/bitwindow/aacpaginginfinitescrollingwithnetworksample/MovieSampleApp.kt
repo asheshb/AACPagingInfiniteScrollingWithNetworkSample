@@ -17,39 +17,89 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample
 
 import android.app.Application
+import android.arch.lifecycle.ViewModelProvider
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database.LocalData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database.MovieDao
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database.MovieDb
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.network.TmdbService
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.repository.MovieRepository
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.utility.AppExecutors
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.utility.PrefixDebugTree
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.network.RemoteData
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.network.TmdbService
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.LocalDataSource
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.MovieDetailDataRepository
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.MovieListDataRepository
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.RemoteDataSource
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail.MovieDetailRepository
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail.MovieDetailUseCase
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist.MovieListRepository
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist.MovieListUseCase
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.moviedetail.MovieDetailViewModelFactory
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist.MovieListViewModelFactory
 import timber.log.Timber
 
 class MovieSampleApp : Application() {
+
     override fun onCreate() {
         super.onCreate()
+        instance = this
         if (BuildConfig.DEBUG) {
             Timber.plant(PrefixDebugTree())
         }
     }
 
-    private fun getAppExecutors(): AppExecutors {
-        return AppExecutors.getInstance()
+    companion object {
+        lateinit var instance: MovieSampleApp
+            private set
     }
 
-    private fun getDb(): MovieDb {
+    // provide dependency objects
+    fun provideMovieListViewModelFactory() : ViewModelProvider.Factory{
+        return MovieListViewModelFactory(provideMovieListUseCase())
+    }
+
+    fun provideMovieDetailViewModelFactory() : ViewModelProvider.Factory{
+        return MovieDetailViewModelFactory(provideMovieDetailUseCase())
+    }
+
+    private fun provideMovieListUseCase(): MovieListUseCase {
+        return MovieListUseCase(provideMovieListRepository(), provideLogger())
+    }
+
+    private fun provideMovieListRepository(): MovieListRepository {
+        return MovieListDataRepository(provideAppExecutors(), provideLocalData(), provideRemoteData())
+    }
+
+    private fun provideMovieDetailUseCase(): MovieDetailUseCase {
+        return MovieDetailUseCase(provideMovieDetailRepository())
+    }
+
+    private fun provideMovieDetailRepository(): MovieDetailRepository {
+        return MovieDetailDataRepository(provideLocalData())
+    }
+
+    private fun provideDb(): MovieDb {
         return MovieDb.getInstance(this)
     }
 
-    private fun getMovieDao(): MovieDao {
-        return getDb().movieDao()
+    private fun provideMovieDao(): MovieDao {
+        return provideDb().movieDao()
     }
 
-    private fun getTmdbService(): TmdbService {
+    private fun provideTmdbService(): TmdbService {
         return TmdbService.getInstance()
     }
 
-    fun getMovieRepository(): MovieRepository {
-        return MovieRepository.getInstance(getAppExecutors(), getMovieDao(), getTmdbService())
+    private fun provideLocalData(): LocalDataSource {
+        return LocalData(provideAppExecutors(), provideMovieDao())
+    }
+
+    private fun provideRemoteData(): RemoteDataSource {
+        return RemoteData(provideTmdbService())
+    }
+
+    private fun provideAppExecutors(): AppExecutors {
+        return AppExecutors.getInstance()
+    }
+
+    private fun provideLogger(): TimberLogger {
+        return TimberLogger.getInstance()
     }
 }

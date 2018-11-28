@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainActivity">
 
     <fragment
-        android:id="@+id/movieListFragment"
-        android:name="com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.list.MovieListFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:id="@+id/my_nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/main_navigation"
+        app:defaultNavHost="true"
+        />
 
 </android.support.constraint.ConstraintLayout>
