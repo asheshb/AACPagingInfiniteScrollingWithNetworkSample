@@ -19,12 +19,13 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.moviedetail
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail.MovieDetailUseCase
+import javax.inject.Inject
 
 
 /**
  * Factory for ViewModels
  */
-class MovieDetailViewModelFactory(private val movieDetailUseCase: MovieDetailUseCase) : ViewModelProvider.Factory {
+class MovieDetailViewModelFactory @Inject constructor(private val movieDetailUseCase: MovieDetailUseCase) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MovieDetailViewModel::class.java)) {

@@ -5,16 +5,17 @@ import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.AppExecutors
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.MovieData
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.LocalDataSource
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.LocalData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.Movie
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.MoviePoster
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.BoundaryState
+import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 
-class LocalData(private val appExecutors: AppExecutors,
-                private val movieDao: MovieDao) :
-    LocalDataSource {
-
+class LocalDataImpl @Inject constructor(private val appExecutors: AppExecutors,
+                                        private val movieDao: MovieDao) :
+    LocalData {
     private val boundaryCallback =
         MovieBoundaryCallback()
 

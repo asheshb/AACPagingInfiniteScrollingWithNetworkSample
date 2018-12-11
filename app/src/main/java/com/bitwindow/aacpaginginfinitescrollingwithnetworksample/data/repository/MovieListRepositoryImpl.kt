@@ -11,14 +11,14 @@ import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Loadi
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Status
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 
 
-class MovieListDataRepository (
+class MovieListRepositoryImpl @Inject constructor (
     private val appExecutors: AppExecutors,
-    private val localData: LocalDataSource,
-    private val remoteData: RemoteDataSource
+    private val localData: LocalData,
+    private val remoteData: RemoteData
 ) : MovieListRepository {
-
     private val loadingStatus = MutableLiveData<LoadingStatus>()
 
     override

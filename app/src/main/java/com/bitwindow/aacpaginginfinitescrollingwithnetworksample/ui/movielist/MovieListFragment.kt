@@ -2,6 +2,7 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -15,14 +16,21 @@ import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Error
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Status
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.toast
 import kotlinx.android.synthetic.main.fragment_movie_list.*
+import javax.inject.Inject
 
 
 class MovieListFragment : Fragment() {
     private lateinit var movieListAdapter: MovieListAdapter
-    private lateinit var movieListViewModel: MovieListViewModel
+    @Inject
+    lateinit var movieListViewModelFactory: MovieListViewModelFactory
 
     companion object {
         private const val COL = 2
+    }
+
+    override fun onAttach(context: Context?) {
+        MovieSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(
@@ -32,10 +40,8 @@ class MovieListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        movieListViewModel = ViewModelProviders.of(
-            this,
-            MovieSampleApp.instance.provideMovieListViewModelFactory()
-        )
+        val movieListViewModel = ViewModelProviders.of(
+            this, movieListViewModelFactory)
             .get(MovieListViewModel::class.java)
 
 

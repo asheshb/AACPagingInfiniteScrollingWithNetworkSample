@@ -19,11 +19,16 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist.MovieListUseCase
+import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Factory for ViewModels
  */
-class MovieListViewModelFactory(private val movieListUseCase: MovieListUseCase) : ViewModelProvider.Factory {
+class MovieListViewModelFactory @Inject constructor(private val movieListUseCase: MovieListUseCase) : ViewModelProvider.Factory {
+    init{
+        Timber.d("init")
+    }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MovieListViewModel::class.java)) {

@@ -8,10 +8,10 @@ import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Direc
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.LoadingStatus
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 
-class MovieListViewModel(private val movieListUseCase: MovieListUseCase) : ViewModel() {
+class MovieListViewModel @Inject constructor(private val movieListUseCase: MovieListUseCase) : ViewModel() {
     val movies = movieListUseCase.getMovies()
-
 
     //PagedList use BoundaryCallback object to send us callback about necessary events related to
     // data loading. Here we capture those events and fetch data from the network. The

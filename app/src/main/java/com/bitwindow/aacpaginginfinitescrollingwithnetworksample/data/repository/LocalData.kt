@@ -10,7 +10,7 @@ import java.util.*
 
 // This interface is in accordance to Dependency Inversion Principle by separating the higher
 // repository class from lower database class.
-interface LocalDataSource {
+interface LocalData {
 
     fun getMovies() : LiveData<PagedList<MoviePoster>>
     fun getBoundaryState(): LiveData<BoundaryState<Date>>

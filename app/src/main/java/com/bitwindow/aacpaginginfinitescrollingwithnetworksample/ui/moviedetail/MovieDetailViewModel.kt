@@ -6,8 +6,9 @@ import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.Movie
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail.MovieDetailUseCase
+import javax.inject.Inject
 
-class MovieDetailViewModel(private val movieDetailUseCase : MovieDetailUseCase) : ViewModel() {
+class MovieDetailViewModel @Inject constructor(private val movieDetailUseCase : MovieDetailUseCase) : ViewModel() {
     private val _movieId = MutableLiveData<Long>()
 
     val movie : LiveData<Movie> = Transformations

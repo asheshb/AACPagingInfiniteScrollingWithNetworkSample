@@ -10,8 +10,10 @@ import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Bound
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Direction
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.LoadingStatus
 import java.util.*
+import javax.inject.Inject
 
-class MovieListUseCase(private val repository: MovieListRepository, private val log : Logger){
+class MovieListUseCase @Inject constructor(private val repository: MovieListRepository, private val log : Logger){
+
     fun getMovies(): LiveData<PagedList<MoviePoster>> {
         return repository.getMovies()
     }

@@ -20,6 +20,7 @@ import android.os.Handler
 import android.os.Looper
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import javax.inject.Inject
 
 /**
  * Global executor pools for the whole application.
@@ -27,31 +28,18 @@ import java.util.concurrent.Executors
  * Grouping tasks like this avoids the effects of task starvation (e.g. disk reads don't wait behind
  * webservice requests).
  */
-open class AppExecutors private constructor(
+open class AppExecutors(
     private val diskIO: Executor,
     private val networkIO: Executor,
     private val mainThread: Executor
 ) {
 
-    companion object {
-
-        @Volatile
-        private var INSTANCE: AppExecutors? = null
-
-        fun getInstance(): AppExecutors =
-            INSTANCE
-                    ?: synchronized(this) {
-                INSTANCE
-                        ?: buildInstance().also { INSTANCE = it }
-            }
-
-        private fun buildInstance() =
-            AppExecutors(
-                Executors.newSingleThreadExecutor(),
-                Executors.newFixedThreadPool(3),
-                MainThreadExecutor()
-            )
-    }
+    @Inject
+    constructor() : this(
+        Executors.newSingleThreadExecutor(),
+        Executors.newFixedThreadPool(3),
+        MainThreadExecutor()
+    )
 
     fun diskIO(): Executor {
         return diskIO

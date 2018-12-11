@@ -2,9 +2,10 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample
 
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.Logger
 import timber.log.Timber
+import javax.inject.Inject
 
 //Currently used only by "domain" layer classes to remove Timber dependency in domain layer
-class TimberLogger : Logger{
+class TimberLogger @Inject constructor() : Logger{
 
     companion object {
         @Volatile

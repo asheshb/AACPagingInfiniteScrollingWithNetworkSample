@@ -2,7 +2,7 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.network
 
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.MovieData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.getSimple
-import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.RemoteDataSource
+import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.RemoteData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.ErrorCode
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.LoadingStatus
 import retrofit2.Call
@@ -11,10 +11,10 @@ import retrofit2.Response
 import timber.log.Timber
 import java.io.IOException
 import java.util.*
+import javax.inject.Inject
 
-class RemoteData(private val tmdbService: TmdbService) :
-    RemoteDataSource {
-
+class RemoteDataImpl @Inject constructor(private val tmdbService: TmdbService) :
+    RemoteData {
     override fun fetchItems(
         fetchDate: Date,
         onSuccess: (movies: List<MovieData>) -> Unit,

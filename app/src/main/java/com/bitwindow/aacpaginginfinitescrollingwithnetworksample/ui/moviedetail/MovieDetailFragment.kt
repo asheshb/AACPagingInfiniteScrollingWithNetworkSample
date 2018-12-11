@@ -2,6 +2,7 @@ package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.moviedetail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -14,11 +15,17 @@ import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.M
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.getReadable
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
+import javax.inject.Inject
 
 
 class MovieDetailFragment : Fragment() {
-    private lateinit var movieDetailViewModel: MovieDetailViewModel
+    @Inject
+    lateinit var movieDetailViewModelFactory: MovieDetailViewModelFactory
 
+    override fun onAttach(context: Context?) {
+        MovieSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +36,8 @@ class MovieDetailFragment : Fragment() {
 
 
         super.onActivityCreated(savedInstanceState)
-        movieDetailViewModel = ViewModelProviders.of(
-            this,
-            MovieSampleApp.instance.provideMovieDetailViewModelFactory()
-        )
+        val movieDetailViewModel = ViewModelProviders.of(
+            this,movieDetailViewModelFactory)
             .get(MovieDetailViewModel::class.java)
 
         movieDetailViewModel.movie.observe(viewLifecycleOwner, Observer { it ->
