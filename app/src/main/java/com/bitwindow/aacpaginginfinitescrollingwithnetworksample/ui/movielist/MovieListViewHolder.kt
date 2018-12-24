@@ -1,6 +1,6 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.item_movie.*
 
 
 class MovieListViewHolder(override val containerView: View) :
-    RecyclerView.ViewHolder(containerView), LayoutContainer {
+    androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(movie: MoviePoster?, listener: (Long) -> Unit) {
         if (movie != null) {

@@ -1,9 +1,9 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.moviedetail
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.Movie
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail.MovieDetailUseCase
 import javax.inject.Inject

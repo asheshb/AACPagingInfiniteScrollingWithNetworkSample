@@ -16,8 +16,8 @@
 
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist.MovieListUseCase
 import timber.log.Timber
 import javax.inject.Inject

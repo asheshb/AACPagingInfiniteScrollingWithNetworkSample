@@ -1,8 +1,8 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagedList
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.MoviePoster
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.BoundaryState
 import timber.log.Timber

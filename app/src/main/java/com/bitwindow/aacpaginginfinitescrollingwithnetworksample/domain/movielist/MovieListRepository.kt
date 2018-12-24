@@ -1,7 +1,7 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.MoviePoster
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.BoundaryState
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.LoadingStatus

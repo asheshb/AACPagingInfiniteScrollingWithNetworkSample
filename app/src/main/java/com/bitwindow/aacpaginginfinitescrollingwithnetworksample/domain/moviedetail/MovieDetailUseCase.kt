@@ -1,6 +1,6 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.Logger
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.Movie
 import javax.inject.Inject

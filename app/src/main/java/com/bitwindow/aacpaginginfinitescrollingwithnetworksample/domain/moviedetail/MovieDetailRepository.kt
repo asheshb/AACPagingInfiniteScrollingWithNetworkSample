@@ -1,6 +1,6 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.Movie
 
 // As we need to interact with repostiory which is in data layer. Implementing Dependency Inversion

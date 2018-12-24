@@ -1,7 +1,7 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.di.module
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database.MovieDb
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.di.scope.ApplicationScope
 import dagger.Module

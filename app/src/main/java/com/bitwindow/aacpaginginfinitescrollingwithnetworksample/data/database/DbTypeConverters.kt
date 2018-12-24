@@ -1,6 +1,6 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import java.util.*
 
 class DbTypeConverters {

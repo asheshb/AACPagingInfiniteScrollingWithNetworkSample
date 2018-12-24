@@ -1,8 +1,8 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.database
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.LivePagedListBuilder
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.AppExecutors
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.MovieData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository.LocalData

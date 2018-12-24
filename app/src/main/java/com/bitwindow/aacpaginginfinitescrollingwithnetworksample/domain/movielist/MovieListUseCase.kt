@@ -1,7 +1,7 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.Logger
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.addDays
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.diffDays

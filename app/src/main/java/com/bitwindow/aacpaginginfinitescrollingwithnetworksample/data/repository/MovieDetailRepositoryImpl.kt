@@ -1,6 +1,6 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.data.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.entity.Movie
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.moviedetail.MovieDetailRepository
 import timber.log.Timber

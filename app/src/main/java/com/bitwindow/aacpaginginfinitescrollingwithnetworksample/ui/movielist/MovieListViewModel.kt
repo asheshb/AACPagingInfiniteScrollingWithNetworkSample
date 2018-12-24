@@ -1,8 +1,8 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.movielist.MovieListUseCase
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.Direction
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.vo.LoadingStatus
