@@ -1,13 +1,12 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.moviedetail
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.MovieSampleApp
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.R
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.domain.ResourceUrl
@@ -22,7 +21,7 @@ class MovieDetailFragment : androidx.fragment.app.Fragment() {
     @Inject
     lateinit var movieDetailViewModelFactory: MovieDetailViewModelFactory
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         MovieSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }

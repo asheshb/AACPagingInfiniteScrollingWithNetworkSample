@@ -1,14 +1,12 @@
 package com.bitwindow.aacpaginginfinitescrollingwithnetworksample.ui.movielist
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.MovieSampleApp
 import com.bitwindow.aacpaginginfinitescrollingwithnetworksample.R
@@ -28,7 +26,7 @@ class MovieListFragment : androidx.fragment.app.Fragment() {
         private const val COL = 2
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         MovieSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }
